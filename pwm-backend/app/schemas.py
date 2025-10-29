@@ -1,6 +1,7 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from typing import Optional, List, Literal
 from datetime import datetime
+import json
 
 # ---- Vehicle ----
 class VehicleCreate(BaseModel):
@@ -51,6 +52,24 @@ class ServiceOut(ServiceIn):
     id: int
     date: datetime
     class Config: from_attributes = True
+
+    @field_validator("parts_replaced", mode="before")
+    @classmethod
+    def _coerce_parts(cls, v):
+        if isinstance(v, str):
+            v = v.strip()
+            if not v:
+                return []
+            # try JSON first
+            try:
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return parsed
+            except Exception:
+                pass
+            # fallback: comma-separated string
+            return [p.strip() for p in v.split(",") if p.strip()]
+        return v
 
 # ---- Prediction ----
 class PredictIn(BaseModel):
