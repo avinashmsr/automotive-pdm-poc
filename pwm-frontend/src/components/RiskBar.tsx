@@ -16,4 +16,4 @@ export default function RiskBar({ score }: { score: number }) {
       </div>
     </div>
   );
-}
+} 
