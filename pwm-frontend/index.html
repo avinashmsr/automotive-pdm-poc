@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Predictive Warranty (Maintenance) Solution</title>
     <link rel="stylesheet" href="/src/styles.css" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+    (function () {
+      try {
+        const saved = localStorage.getItem("theme"); // "light" | "dark" | null
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch {}
+    })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
