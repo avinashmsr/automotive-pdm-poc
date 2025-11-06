@@ -1,17 +1,85 @@
-:root { --bg:#0b1220; --card:#121a2b; --text:#e9eefc; --muted:#98a2b3; --accent:#7dd3fc; }
-*{box-sizing:border-box} body { margin:0; background:var(--bg); color:var(--text); font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; }
+/* Theme palettes */
+:root {
+  --bg:#f7f9fc;
+  --card:#ffffff;
+  --text:#0b1220;
+  --muted:#4b5563;
+  --accent:#2563eb;
+  --border:#e5e7eb;
+  --elev: 0 8px 24px rgba(0,0,0,.06);
+  --input:#f3f4f6;
+  --chip:#eef2ff;
+}
+
+:root[data-theme="dark"] {
+  --bg:#0b1220;
+  --card:#121a2b;
+  --text:#e9eefc;
+  --muted:#98a2b3;
+  --accent:#7dd3fc;
+  --border:#1f2a44;
+  --elev: 0 8px 24px rgba(0,0,0,.25);
+  --input:#0e1627;
+  --chip:#1f2a44;
+}
+
+*{box-sizing:border-box}
+html, body { height: 100%;}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  transition: background-color .2s linear, color .2s linear;
+}
+
 .app { max-width:1100px; margin:32px auto; padding:0 16px; }
-.header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
-.card { background:var(--card); border:1px solid #1f2a44; border-radius:16px; padding:16px; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+.header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; gap:12px; flex-wrap:wrap; }
+
+.card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  box-shadow: var(--elev);
+}
+
 .row { display:flex; gap:16px; }
 .col { flex:1 }
-.button { background:#1f2a44; border:1px solid #2a3556; padding:10px 14px; border-radius:12px; color:#dce4ff; cursor:pointer; }
-.button:hover { filter:brightness(1.1) }
-.badge { padding:6px 10px; border-radius:999px; border:1px solid #2a3556; color:var(--muted); }
+
+.button {
+  background:var(--input);
+  border:1px solid var(--border);
+  padding:10px 14px;
+  border-radius:12px;
+  color:var(--text);
+  cursor:pointer;
+  transition: transform .04s ease, filter .15s ease, background-color .2s;
+}
+.button:hover { filter:brightness(1.05) }
+.button:active { transform: translateY(1px) }
+
+.badge {
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--muted);
+  background: var(--chip);
+}
+
 .list { display:flex; flex-direction:column; gap:12px; }
 .item { display:flex; justify-content:space-between; align-items:center; }
-.input { width:100%; padding:10px; background:#0e1627; color:var(--text); border:1px solid #263150; border-radius:8px; }
+
+.input {
+  width:100%;
+  padding:10px;
+  background:var(--input);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+
 .label { color:var(--muted); font-size:12px; margin-bottom:6px; }
 .kv { display:grid; grid-template-columns: 160px 1fr; gap:6px 12px; font-size:14px; }
 .kv span { color:var(--muted); }
-hr { border:none; height:1px; background:#202947; margin:14px 0; }
+hr { border:none; height:1px; background:var(--border); margin:14px 0; }
