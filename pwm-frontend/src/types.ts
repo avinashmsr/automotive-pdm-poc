@@ -11,3 +11,7 @@ export type PredictOut = {
   vehicle_id: number; risk_score: number; risk_label: string; next_service_eta_days: number;
   top_factors: { name: string; contribution: number }[];
 };
+
+export type VehicleSummary = Vehicle & {
+  last_service_date?: string | null;
+};
