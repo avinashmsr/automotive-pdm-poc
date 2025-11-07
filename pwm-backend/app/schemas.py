@@ -93,3 +93,14 @@ class PredictOut(BaseModel):
     risk_label: str
     next_service_eta_days: int
     top_factors: List[Factor]
+
+class VehicleSummaryOut(BaseModel):
+    id: int
+    vin: str
+    make: str
+    model: str
+    year: int
+    mileage: int
+    in_service_date: datetime          # treat as "Date of Purchase" in UI
+    last_service_date: Optional[datetime] = None
+    class Config: from_attributes = True
