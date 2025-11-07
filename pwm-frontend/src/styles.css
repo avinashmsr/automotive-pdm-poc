@@ -83,3 +83,9 @@ body {
 .kv { display:grid; grid-template-columns: 160px 1fr; gap:6px 12px; font-size:14px; }
 .kv span { color:var(--muted); }
 hr { border:none; height:1px; background:var(--border); margin:14px 0; }
+
+.table { width:100%; border-collapse:collapse; }
+.table th, .table td { padding:10px 12px; border-bottom:1px solid var(--border); text-align:left; }
+.table th { font-weight:600; color:var(--muted); }
+.table tr:hover { background: var(--input); cursor:pointer; }
+.link-like { color: var(--text); text-decoration: none; }
