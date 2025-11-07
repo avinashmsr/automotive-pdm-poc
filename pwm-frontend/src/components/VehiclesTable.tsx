@@ -1,18 +1,19 @@
 import React from "react";
 import { VehicleSummary } from "../types";
+import { useNavigate } from "react-router-dom";
 
 type Props = { items: VehicleSummary[] };
 
 export default function VehiclesTable({ items }: Props) {
-  const openDetails = (id: number) => {
-    window.open(`/vehicle/${id}`, "_blank", "noopener,noreferrer");
-  };
+  const navigate = useNavigate();
 
-  const fmtDate = (s?: string | null) => s ? new Date(s).toLocaleDateString() : "—";
+  const openDetails = (id: number) => navigate(`/vehicle/${id}`);
+
+  const fmtDate = (s?: string | null) => (s ? new Date(s).toLocaleDateString() : "—");
 
   return (
     <div className="card">
-      <h3 style={{marginTop:0}}>Vehicles at this Dealership</h3>
+      <h3 style={{ marginTop: 0 }}>Vehicles at this Dealership</h3>
       <table className="table">
         <thead>
           <tr>
@@ -24,8 +25,21 @@ export default function VehiclesTable({ items }: Props) {
           </tr>
         </thead>
         <tbody>
-          {items.map(v => (
-            <tr key={v.id} onClick={() => openDetails(v.id)}>
+          {items.map((v) => (
+            <tr
+              key={v.id}
+              onClick={() => openDetails(v.id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  openDetails(v.id);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label={`Open details for ${v.year} ${v.make} ${v.model}`}
+              style={{ outline: "none" }}
+            >
               <td>{v.year} {v.make} {v.model}</td>
               <td><span className="badge">{v.vin}</span></td>
               <td>{v.mileage.toLocaleString()} mi</td>
@@ -35,8 +49,8 @@ export default function VehiclesTable({ items }: Props) {
           ))}
         </tbody>
       </table>
-      <div style={{marginTop:10}} className="label">
-        Click any row to open the vehicle details in a new tab.
+      <div style={{ marginTop: 10 }} className="label">
+        Click a row (or press Enter/Space) to view vehicle details.
       </div>
     </div>
   );
