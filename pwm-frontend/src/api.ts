@@ -12,3 +12,9 @@ export const ingestTelemetry = (payload: Record<string, unknown>) =>
   fetch(`${API}/telemetry`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).then(j);
 export const serviceHistory = (vehicleId: number) =>
   fetch(`${API}/service/${vehicleId}`).then(j);
+
+export const listVehicleSummary = () =>
+  fetch(`${API}/vehicles/summary`).then(j);
+
+export const getVehicle = (id: number) =>
+  fetch(`${API}/vehicles/${id}`).then(j);
