@@ -4,6 +4,7 @@ import { listVehicles } from "./api";
 //import VehicleList from "./components/VehicleList";
 //import VehiclePanel from "./components/VehiclePanel";
 import ThemeToggle from "./components/ThemeToggle";  // <-- added ThemeToggle component dependency for dark/light mode
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import VehicleDetails from "./pages/VehicleDetails";
 
