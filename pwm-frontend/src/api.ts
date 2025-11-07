@@ -17,4 +17,4 @@ export const listVehicleSummary = () =>
   fetch(`${API}/vehicles/summary`).then(j);
 
 export const getVehicle = (id: number) =>
-  fetch(`${API}/vehicles/${id}`).then(j);
+  fetch(`${API}/vehicles/id/${id}`).then(j);

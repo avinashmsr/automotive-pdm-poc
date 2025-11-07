@@ -18,7 +18,7 @@ def create_vehicle(v: schemas.VehicleCreate, db: Session = Depends(get_db)):
     db.add(m); db.commit(); db.refresh(m)
     return m
 
-@router.get("/{vehicle_id}", response_model=schemas.VehicleOut)   # added endpoint
+@router.get("/id/{vehicle_id}", response_model=schemas.VehicleOut)   # added endpoint
 def get_vehicle(vehicle_id: int, db: Session = Depends(get_db)):
     v = db.get(models.Vehicle, vehicle_id)
     if not v:
